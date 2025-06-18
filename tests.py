@@ -2,6 +2,7 @@ import unittest
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
+from functions.run_python_file import run_python_file
 
 
 class TestCalculator(unittest.TestCase):
@@ -37,16 +38,32 @@ class TestCalculator(unittest.TestCase):
     #     result = get_file_content("calculator", "/bin/cat")
     #     print(result)
 
-    def test_write_lorem(self):
-        result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
+    # def test_write_lorem(self):
+    #     result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
+    #     print(result)
+
+    # def test_write_pkg_lorem(self):
+    #     result = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
+    #     print(result)
+
+    # def test_write_temp_outside(self):
+    #     result = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+    #     print(result)
+
+    def test_run_calc_main(self):
+        result = run_python_file("calculator", "main.py")
         print(result)
 
-    def test_write_pkg_lorem(self):
-        result = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
+    def test_run_calc_test(self):
+        result = run_python_file("calculator", "tests.py")
         print(result)
 
-    def test_write_temp_outside(self):
-        result = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+    def test_run_calc_main_parent(self):
+        result = run_python_file("calculator", "../main.py")
+        print(result)
+
+    def test_run_calc_nonexistent(self):
+        result = run_python_file("calculator", "nonexistent.py")
         print(result)
 
 if __name__ == "__main__":
