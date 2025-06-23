@@ -3,7 +3,10 @@ from google.genai import types
 
 def get_files_info(working_directory, directory=None):
     abs_workdir = os.path.abspath(working_directory)
-    abs_target = os.path.abspath(os.path.join(working_directory, directory))
+    if directory is None:
+        abs_target = abs_workdir
+    else:
+        abs_target = os.path.abspath(os.path.join(working_directory, directory))
 
     if abs_target != abs_workdir and not abs_target.startswith(abs_workdir + os.sep):
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
